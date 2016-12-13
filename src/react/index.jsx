@@ -1,3 +1,20 @@
-/**
- * Created by 张扬 on 2016/12/7.
- */
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import Counter from './component/Counter.jsx'
+import counter from './reducer/reducer.jsx'
+
+const store = createStore(counter)
+const rootEl = document.getElementById('root');
+
+const render = () => ReactDOM.render(
+		<Counter
+				value={store.getState()}
+				// onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
+				// onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
+		/>,
+		rootEl
+);
+
+render();
+store.subscribe(render);

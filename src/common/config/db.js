@@ -9,8 +9,8 @@ export default {
     mysql: {
       host: '127.0.0.1',
       port: '',
-      database: '',
-      user: '',
+      database: 'lab',
+      user: 'root',
       password: '',
       prefix: 'think_',
       encoding: 'utf8'
