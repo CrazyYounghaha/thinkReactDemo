@@ -13,7 +13,7 @@ export default class extends Base {
   }
   * testAction(){
     if(this.isAjax('post')){
-      let data = yield this.model('user').where({id : "1"}).find();
+      let data = yield this.model('user').where({id : "1"}).select();
       console.log(data);
       return this.success(data);
     }

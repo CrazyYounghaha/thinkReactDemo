@@ -1,20 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from "redux-thunk"
+import createLogger from "redux-logger"
+import { Provider } from "react-redux"
 import Counter from './component/Counter.jsx'
-import counter from './reducer/reducer.jsx'
+import rootReducer from './reducer/reducer.jsx'
 
-const store = createStore(counter)
+const loggerMiddleware = createLogger();
+
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, loggerMiddleware)(createStore);
+
+const store = createStoreWithMiddleware(rootReducer);
+
 const rootEl = document.getElementById('root');
 
-const render = () => ReactDOM.render(
-		<Counter
-				value={store.getState()}
-				// onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-				// onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-		/>,
+ReactDOM.render(
+		<Provider store={ store }>
+			<Counter />
+		</Provider>,
 		rootEl
 );
-
-render();
-store.subscribe(render);
