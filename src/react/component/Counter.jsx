@@ -1,3 +1,4 @@
+"user strict";
 import React, {Component, PropTypes} from 'react'
 import { connect } from "react-redux"
 import Notes_header from "./Notes_header.jsx"
@@ -7,9 +8,6 @@ class Counter extends React.Component {
 
 		constructor(props) {
 				super(props);
-				this.state = {
-						value: 123123
-				};
 		}
 
 		onClickChange() {
